@@ -40,7 +40,8 @@
 </script>
 
 <style lang="less" scoped>
-	@import "~@/static/css/common.less";
+	@blue:#3D97FF;
+	@black332: #333333;
 	.tags {
 		// width: 100%;
 		// position: fixed;
