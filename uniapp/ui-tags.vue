@@ -41,7 +41,7 @@
 
 <style lang="less" scoped>
 	@blue:#3D97FF;
-	@black332: #333333;
+	@black333: #333333;
 	.tags {
 		// width: 100%;
 		// position: fixed;
