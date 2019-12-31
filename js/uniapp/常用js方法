@@ -1,0 +1,47 @@
+
+/**
+ * @param {url} url 接口路径
+ * @param {fileName} fileName 图片文件夹
+ * @return 接口返回数据
+ * */
+uploadImgFun(url) {
+  var that = this
+  return new Promise((resolve, reject) => {
+    uni.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      // sourceType: ['album'], //从相册选择
+      success: function(res) {
+        uni.showLoading({
+          title: that.common.uploading,
+          // title: '正在上传中',
+          mask: true
+        })
+        const path = res.tempFilePaths[0]
+        console.log(path)
+        uni.uploadFile({
+          url: that.$url.imgUrl + url,
+          filePath: path,
+          name: 'file',
+          formData: {
+            target: 'realname',
+            lang: that.lang,
+            uid: that.$url.uid
+          },
+          success(res) {
+            console.log(res)
+            const data = JSON.parse(res.data)
+            if (data.status !== 0) {
+              uni.showToast({
+                icon: 'none',
+                title: data.message
+              })
+            } else {
+              resolve(data.data)
+            }
+          }
+        })
+      }
+    })
+  })
+}
