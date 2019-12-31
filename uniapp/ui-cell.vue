@@ -64,7 +64,7 @@
 </script>
 
 <style lang="less" scoped>
-	@import "~@/static/css/common.less";
+	
 	@blackf7: #f7f7f7;
 	@black333: #333;
 	@blue: #3D97FF;
