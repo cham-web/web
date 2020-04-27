@@ -444,9 +444,12 @@ export function compressUpload(image, file, quality) {
   const { width, height } = image
   canvas.width = width
   canvas.height = height
+  //透明图像默认填充白色背景
+  ctx.fillStyle = '#fff'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   ctx.drawImage(image, 0, 0, width, height)
-  const compressData = canvas.toDataURL(file.type || 'image/jpg', quality || 0.7)
+  // 如果需要png转换jpg图片把file.type去掉即可
+  const compressData = canvas.toDataURL(file.type || 'image/jpeg', quality || 0.7)
   const blobImg = dataURLtoBlob(compressData)
   console.log(blobImg)
   return blobImg
